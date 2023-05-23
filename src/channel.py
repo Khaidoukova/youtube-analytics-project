@@ -1,23 +1,16 @@
 import json
 import os
-
-# необходимо установить через: pip install google-api-python-client
 from googleapiclient.discovery import build
-
-import isodate
-
-
 
 class Channel:
     """Класс для ютуб-канала"""
+    api_key: str = os.getenv('API_KEY')
+    youtube = build('youtube', 'v3', developerKey=api_key)
 
     @classmethod
     def get_service(cls):
         """Класс-метод, возвращающий объект для работы с YouTube API"""
-        api_key: str = os.getenv('YT_API_KEY')
-        yt_object = build('youtube', 'v3', developerKey=api_key)
-        return yt_object
-
+        return cls.youtube
 
     def __init__(self, channel_id) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
@@ -58,7 +51,7 @@ class Channel:
         yt_dict["video_count"] = self.video_count
         yt_dict["view_count"] = self.view_count
         with open(file_name, 'w', encoding="UTF-8") as file:
-            json.dump(yt_dict, file, indent=2, ensure_askii=False)
+            json.dump(yt_dict, file, indent=2)
 
 
 
