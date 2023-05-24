@@ -29,10 +29,10 @@ class Channel:
         """Геттер для приватного атрибута channel_id"""
         return self.__channel_id
 
-    @channel_id.setter
-    def channel_id(self, channel_id):
-        """Сеттер для приватного атрибута channel_id"""
-        self.__channel_id = channel_id
+    #@channel_id.setter
+    #def channel_id(self, channel_id):
+       # """Сеттер для приватного атрибута channel_id"""
+       # self.__channel_id = channel_id
 
 
     def print_info(self) -> None:
@@ -51,7 +51,7 @@ class Channel:
         yt_dict["video_count"] = self.video_count
         yt_dict["view_count"] = self.view_count
         with open(file_name, 'w', encoding="UTF-8") as file:
-            json.dump(yt_dict, file, indent=2)
+            json.dump(yt_dict, file, indent=2, ensure_ascii=False)
 
 
 
