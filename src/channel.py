@@ -28,7 +28,10 @@ class Channel:
         return f'{self.title} ({self.url})'
 
     def __add__(self, other):
-        return int(self.subscriber_count) + int(other.subscriber_count)
+        if not isinstance(other, Channel):
+            raise ValueError('Складывать можно только два объекта Channel.')
+        else:
+            return int(self.subscriber_count) + int(other.subscriber_count)
 
     def __sub__(self, other):
         return int(self.subscriber_count) - int(other.subscriber_count)
