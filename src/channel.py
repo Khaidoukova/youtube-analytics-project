@@ -1,16 +1,9 @@
 import json
-import os
-from googleapiclient.discovery import build
+from src.ytmixin import YTMixin
 
-class Channel:
+
+class Channel(YTMixin):
     """Класс для ютуб-канала"""
-    api_key: str = os.getenv('API_KEY')
-    youtube = build('youtube', 'v3', developerKey=api_key)
-
-    @classmethod
-    def get_service(cls):
-        """Класс-метод, возвращающий объект для работы с YouTube API"""
-        return cls.youtube
 
     def __init__(self, channel_id) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""

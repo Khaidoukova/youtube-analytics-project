@@ -1,17 +1,9 @@
-import os
-from googleapiclient.discovery import build
+from src.ytmixin import YTMixin
 
 
-class Video:
+
+class Video(YTMixin):
     """Класс для ютуб-канала"""
-    api_key: str = os.getenv('API_KEY')
-    youtube = build('youtube', 'v3', developerKey=api_key)
-
-    @classmethod
-    def get_service(cls):
-        api_key: str = os.getenv('API_KEY')
-        youtube = build('youtube', 'v3', developerKey=api_key)
-        return youtube
 
     def __init__(self, video_id):
         self.video_id = video_id
